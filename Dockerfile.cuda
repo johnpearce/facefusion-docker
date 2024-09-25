@@ -13,6 +13,6 @@ RUN apt-get install git -y
 RUN apt-get install curl -y
 RUN apt-get install ffmpeg -y
 
-RUN --mount=type=secret,id=GIT_AUTH_TOKEN,env=GIT_AUTH_TOKEN \
-    git clone https://GIT_AUTH_TOKEN@github.com/johnpearce/facefusion.git --branch ${FACEFUSION_VERSION} --single-branch .
+RUN --mount=type=secret,id=GIT_AUTH_TOKEN \
+    git clone https://${GIT_AUTH_TOKEN}@github.com/johnpearce/facefusion.git --branch master --single-branch .
 RUN python install.py --onnxruntime cuda --skip-conda
